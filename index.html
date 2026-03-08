@@ -63,8 +63,8 @@
         <a href="#accueil" class="nav-link">Accueil</a>
         <a href="#profil" class="nav-link">Profil</a>
         <a href="#e6" class="nav-link text-accent">E6 & Infra</a>
-        <a href="#projets" class="nav-link">Projets</a>
         <a href="#tp" class="nav-link">Réalisations</a>
+        <a href="#projets" class="nav-link">Projets</a>
         <a href="#certifications" class="nav-link">Certifs</a>
         <a href="#stages" class="nav-link">Stages</a>
         <a href="#formation" class="nav-link">Formation</a>
@@ -92,8 +92,8 @@
       <a href="#accueil" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Accueil</a>
       <a href="#profil" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Profil</a>
       <a href="#e6" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5 text-accent">E6 & Infra</a>
-      <a href="#projets" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Projets</a>
       <a href="#tp" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Réalisations</a>
+      <a href="#projets" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Projets</a>
       <a href="#certifications" onclick="toggleMenu()"
         class="py-3 w-full text-center hover:bg-white/5">Certifications</a>
       <a href="#stages" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Stages</a>
@@ -210,13 +210,13 @@
                 <div class="glass-card p-4">
                   <div class="flex justify-between items-center mb-2">
                     <span class="font-medium text-sm">Linux (Debian/Ubuntu)</span>
-                    <span class="skill-badge badge-confirme">Intermédiaire</span>
+                    <span class="skill-badge badge-avance">Avancé</span>
                   </div>
                 </div>
                 <div class="glass-card p-4">
                   <div class="flex justify-between items-center mb-2">
                     <span class="font-medium text-sm">Virtualisation (Proxmox)</span>
-                    <span class="skill-badge badge-confirme">Intermédiaire</span>
+                    <span class="skill-badge badge-confirme">Confirmé</span>
                   </div>
                 </div>
               </div>
@@ -224,13 +224,13 @@
                 <div class="glass-card p-4">
                   <div class="flex justify-between items-center mb-2">
                     <span class="font-medium text-sm">Réseau & Sécurité (pfSense)</span>
-                    <span class="skill-badge badge-initiation">Initié</span>
+                    <span class="skill-badge badge-confirme">Confirmé</span>
                   </div>
                 </div>
                 <div class="glass-card p-4">
                   <div class="flex justify-between items-center mb-2">
                     <span class="font-medium text-sm">Gestion de Parc (GLPI)</span>
-                    <span class="skill-badge badge-initiation">Initié</span>
+                    <span class="skill-badge badge-avance">Avancé</span>
                   </div>
                 </div>
                 <div class="glass-card p-4">
@@ -646,12 +646,130 @@
       </div>
     </section>
 
+    <!-- SECTION TRAVAUX PRATIQUES -->
+    <section id="tp" class="py-24 bg-black/20">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <h2 class="text-4xl font-bold mb-4">Réalisations <span class="text-accent">Techniques</span></h2>
+          <p class="text-muted">Travaux pratiques et documentations réalisés en BTS SIO SISR</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <!-- TP 1: Services Réseau & Sécurité -->
+          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up">
+            <div class="w-14 h-14 bg-red-500/20 rounded-lg flex items-center justify-center mb-4">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/PfSense_logo.png/220px-PfSense_logo.png" alt="pfSense" class="w-8 h-8 object-contain invert">
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-white">Services Réseau & Sécurité</h3>
+            <p class="text-xs text-gray-400 mb-4">Configuration pfSense, DHCP, DNS — mise en place de services réseau sécurisés.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-1 rounded bg-red-500/10 text-red-400 text-[10px] border border-red-500/20">pfSense</span>
+              <span class="px-2 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] border border-blue-500/20">DHCP</span>
+              <span class="px-2 py-1 rounded bg-green-500/10 text-green-400 text-[10px] border border-green-500/20">DNS</span>
+            </div>
+            <a href="docmSio/Documents Officiels/PfSense_Aziz.pdf" target="_blank"
+              class="tp-doc-link flex items-center gap-2 text-xs text-red-400 hover:text-red-300 transition-colors">
+              <i class="fas fa-file-pdf"></i> Documentation pfSense
+            </a>
+          </div>
+
+          <!-- TP 2: Gestion de Parc -->
+          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-14 h-14 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-4">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="GLPI" class="w-8 h-8 object-contain">
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-white">Gestion de Parc</h3>
+            <p class="text-xs text-gray-400 mb-4">Déploiement et administration GLPI — inventaire, tickets, gestion des actifs.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-400 text-[10px] border border-cyan-500/20">GLPI</span>
+              <span class="px-2 py-1 rounded bg-purple-500/10 text-purple-400 text-[10px] border border-purple-500/20">GPO Agent</span>
+            </div>
+            <div class="space-y-2">
+              <a href="docmSio/Documents Officiels/Documentation-Installation GLPI sur Debian.pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-cyan-400 hover:text-cyan-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> Installation GLPI sur Debian
+              </a>
+              <a href="docmSio/Documents Officiels/Documentation-Configuration par GPO de l'Agent-GLPI.pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-purple-400 hover:text-purple-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> Config GPO Agent GLPI
+              </a>
+            </div>
+          </div>
+
+          <!-- TP 3: Administration & Active Directory -->
+          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-14 h-14 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows" class="w-8 h-8 object-contain">
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-white">Administration & Active Directory</h3>
+            <p class="text-xs text-gray-400 mb-4">Installation Active Directory DS, GPO, scripting Bash et PowerShell.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-1 rounded bg-purple-500/10 text-purple-400 text-[10px] border border-purple-500/20">AD DS</span>
+              <span class="px-2 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] border border-blue-500/20">GPO</span>
+              <span class="px-2 py-1 rounded bg-green-500/10 text-green-400 text-[10px] border border-green-500/20">Windows Server</span>
+            </div>
+            <a href="docmSio/Documents Officiels/Documentation-Installation Active Directory (AD DS) Windows Server 2022.pdf" target="_blank"
+              class="tp-doc-link flex items-center gap-2 text-xs text-purple-400 hover:text-purple-300 transition-colors">
+              <i class="fas fa-file-pdf"></i> Installation AD DS Windows Server 2022
+            </a>
+          </div>
+
+          <!-- TP 4: Infrastructures Réseau -->
+          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up" data-aos-delay="300">
+            <div class="w-14 h-14 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg" alt="Cisco" class="w-8 h-8 object-contain" onerror="this.outerHTML='<i class=\'fas fa-network-wired text-2xl text-orange-400\'></i>'">
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-white">Infrastructures Réseau</h3>
+            <p class="text-xs text-gray-400 mb-4">Configuration switch, routeur, VLANs — conception d'architectures réseau Cisco.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-1 rounded bg-orange-500/10 text-orange-400 text-[10px] border border-orange-500/20">Switch</span>
+              <span class="px-2 py-1 rounded bg-yellow-500/10 text-yellow-400 text-[10px] border border-yellow-500/20">Routeur</span>
+              <span class="px-2 py-1 rounded bg-teal-500/10 text-teal-400 text-[10px] border border-teal-500/20">Cisco IOS</span>
+            </div>
+            <div class="space-y-2">
+              <a href="docmSio/Documents Officiels/switch.pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-orange-400 hover:text-orange-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> TP Switch
+              </a>
+              <a href="docmSio/Documents Officiels/router-cisco .pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-yellow-400 hover:text-yellow-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> TP Routeur Cisco
+              </a>
+
+            </div>
+          </div>
+
+          <!-- TP 5: Virtualisation -->
+          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up" data-aos-delay="400">
+            <div class="w-14 h-14 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-8 h-8 object-contain">
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-white">Virtualisation</h3>
+            <p class="text-xs text-gray-400 mb-4">Déploiement Proxmox VE, création et gestion de VMs, conteneurs Docker.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-1 rounded bg-orange-500/10 text-orange-400 text-[10px] border border-orange-500/20">Proxmox</span>
+              <span class="px-2 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] border border-blue-500/20">Docker</span>
+            </div>
+            <div class="space-y-2">
+              <a href="docmSio/Documents Officiels/Proxmox-1.pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-orange-400 hover:text-orange-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> TP Proxmox VE
+              </a>
+              <a href="docmSio/Documents Officiels/SynthèseDocker.pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> Synthèse Docker
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="projets" class="py-24">
       <div class="container mx-auto px-6">
 
         <div class="mb-20">
-          <h2 class="text-3xl font-bold mb-10 border-l-4 border-accent pl-4" data-aos="fade-right">Autres Projets
-            Académiques</h2>
+          <h2 class="text-3xl font-bold mb-10 border-l-4 border-accent pl-4" data-aos="fade-right">Projets</h2>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div
               class="glass-card p-6 text-center flex flex-col h-full hover:-translate-y-2 transition-transform duration-300"
@@ -821,125 +939,6 @@
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- SECTION TRAVAUX PRATIQUES -->
-    <section id="tp" class="py-24 bg-black/20">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16" data-aos="fade-up">
-          <h2 class="text-4xl font-bold mb-4">Réalisations <span class="text-accent">Techniques</span></h2>
-          <p class="text-muted">Travaux pratiques et documentations réalisés en BTS SIO SISR</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <!-- TP 1: Services Réseau & Sécurité -->
-          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up">
-            <div class="w-14 h-14 bg-red-500/20 rounded-lg flex items-center justify-center mb-4">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/PfSense_logo.png/220px-PfSense_logo.png" alt="pfSense" class="w-8 h-8 object-contain invert">
-            </div>
-            <h3 class="text-lg font-bold mb-2 text-white">Services Réseau & Sécurité</h3>
-            <p class="text-xs text-gray-400 mb-4">Configuration pfSense, DHCP, DNS — mise en place de services réseau sécurisés.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-2 py-1 rounded bg-red-500/10 text-red-400 text-[10px] border border-red-500/20">pfSense</span>
-              <span class="px-2 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] border border-blue-500/20">DHCP</span>
-              <span class="px-2 py-1 rounded bg-green-500/10 text-green-400 text-[10px] border border-green-500/20">DNS</span>
-            </div>
-            <a href="docmSio/Documents Officiels/PfSense_Aziz.pdf" target="_blank"
-              class="tp-doc-link flex items-center gap-2 text-xs text-red-400 hover:text-red-300 transition-colors">
-              <i class="fas fa-file-pdf"></i> Documentation pfSense
-            </a>
-          </div>
-
-          <!-- TP 2: Gestion de Parc -->
-          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up" data-aos-delay="100">
-            <div class="w-14 h-14 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-4">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="GLPI" class="w-8 h-8 object-contain">
-            </div>
-            <h3 class="text-lg font-bold mb-2 text-white">Gestion de Parc</h3>
-            <p class="text-xs text-gray-400 mb-4">Déploiement et administration GLPI — inventaire, tickets, gestion des actifs.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-400 text-[10px] border border-cyan-500/20">GLPI</span>
-              <span class="px-2 py-1 rounded bg-purple-500/10 text-purple-400 text-[10px] border border-purple-500/20">GPO Agent</span>
-            </div>
-            <div class="space-y-2">
-              <a href="docmSio/Documents Officiels/Documentation-Installation GLPI sur Debian.pdf" target="_blank"
-                class="tp-doc-link flex items-center gap-2 text-xs text-cyan-400 hover:text-cyan-300 transition-colors">
-                <i class="fas fa-file-pdf"></i> Installation GLPI sur Debian
-              </a>
-              <a href="docmSio/Documents Officiels/Documentation-Configuration par GPO de l'Agent-GLPI.pdf" target="_blank"
-                class="tp-doc-link flex items-center gap-2 text-xs text-purple-400 hover:text-purple-300 transition-colors">
-                <i class="fas fa-file-pdf"></i> Config GPO Agent GLPI
-              </a>
-            </div>
-          </div>
-
-          <!-- TP 3: Administration & Active Directory -->
-          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up" data-aos-delay="200">
-            <div class="w-14 h-14 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows" class="w-8 h-8 object-contain">
-            </div>
-            <h3 class="text-lg font-bold mb-2 text-white">Administration & Active Directory</h3>
-            <p class="text-xs text-gray-400 mb-4">Installation Active Directory DS, GPO, scripting Bash et PowerShell.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-2 py-1 rounded bg-purple-500/10 text-purple-400 text-[10px] border border-purple-500/20">AD DS</span>
-              <span class="px-2 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] border border-blue-500/20">GPO</span>
-              <span class="px-2 py-1 rounded bg-green-500/10 text-green-400 text-[10px] border border-green-500/20">Windows Server</span>
-            </div>
-            <a href="docmSio/Documents Officiels/Documentation-Installation Active Directory (AD DS) Windows Server 2022.pdf" target="_blank"
-              class="tp-doc-link flex items-center gap-2 text-xs text-purple-400 hover:text-purple-300 transition-colors">
-              <i class="fas fa-file-pdf"></i> Installation AD DS Windows Server 2022
-            </a>
-          </div>
-
-          <!-- TP 4: Infrastructures Réseau -->
-          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up" data-aos-delay="300">
-            <div class="w-14 h-14 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg" alt="Cisco" class="w-8 h-8 object-contain" onerror="this.outerHTML='<i class=\'fas fa-network-wired text-2xl text-orange-400\'></i>'">
-            </div>
-            <h3 class="text-lg font-bold mb-2 text-white">Infrastructures Réseau</h3>
-            <p class="text-xs text-gray-400 mb-4">Configuration switch, routeur, VLANs — conception d'architectures réseau Cisco.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-2 py-1 rounded bg-orange-500/10 text-orange-400 text-[10px] border border-orange-500/20">Switch</span>
-              <span class="px-2 py-1 rounded bg-yellow-500/10 text-yellow-400 text-[10px] border border-yellow-500/20">Routeur</span>
-              <span class="px-2 py-1 rounded bg-teal-500/10 text-teal-400 text-[10px] border border-teal-500/20">Cisco IOS</span>
-            </div>
-            <div class="space-y-2">
-              <a href="docmSio/Documents Officiels/switch.pdf" target="_blank"
-                class="tp-doc-link flex items-center gap-2 text-xs text-orange-400 hover:text-orange-300 transition-colors">
-                <i class="fas fa-file-pdf"></i> TP Switch
-              </a>
-              <a href="docmSio/Documents Officiels/router-cisco .pdf" target="_blank"
-                class="tp-doc-link flex items-center gap-2 text-xs text-yellow-400 hover:text-yellow-300 transition-colors">
-                <i class="fas fa-file-pdf"></i> TP Routeur Cisco
-              </a>
-
-            </div>
-          </div>
-
-          <!-- TP 5: Virtualisation -->
-          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up" data-aos-delay="400">
-            <div class="w-14 h-14 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-8 h-8 object-contain">
-            </div>
-            <h3 class="text-lg font-bold mb-2 text-white">Virtualisation</h3>
-            <p class="text-xs text-gray-400 mb-4">Déploiement Proxmox VE, création et gestion de VMs, conteneurs Docker.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-2 py-1 rounded bg-orange-500/10 text-orange-400 text-[10px] border border-orange-500/20">Proxmox</span>
-              <span class="px-2 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] border border-blue-500/20">Docker</span>
-            </div>
-            <div class="space-y-2">
-              <a href="docmSio/Documents Officiels/Proxmox-1.pdf" target="_blank"
-                class="tp-doc-link flex items-center gap-2 text-xs text-orange-400 hover:text-orange-300 transition-colors">
-                <i class="fas fa-file-pdf"></i> TP Proxmox VE
-              </a>
-              <a href="docmSio/Documents Officiels/SynthèseDocker.pdf" target="_blank"
-                class="tp-doc-link flex items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors">
-                <i class="fas fa-file-pdf"></i> Synthèse Docker
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
