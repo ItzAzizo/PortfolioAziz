@@ -6,6 +6,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Portfolio — Aziz Benyamina-Houari | BTS SIO SISR</title>
 
+  <!-- Open Graph Meta Tags pour le partage SEO / Réseaux Sociaux -->
+  <meta property="og:title" content="Aziz Benyamina-Houari — Futur Administrateur Systèmes & Réseaux" />
+  <meta property="og:description" content="Découvrez le portfolio d'Aziz Benyamina. Étudiant en BTS SIO SISR spécialisé en Cybersécurité, Virtualisation et Administration Windows/Linux." />
+  <meta property="og:type" content="website" />
+  <!-- Remplace "ton-url.fr" par le vrai lien une fois hébergé -->
+  <meta property="og:url" content="https://ton-url-de-portfolio.fr" />
+  <!-- L'image de prévisualisation (à mettre à la racine ou dans /images) -->
+  <meta property="og:image" content="https://ton-url-de-portfolio.fr/images/preview.png" />
+  <meta name="theme-color" content="#7c3aed" />
+
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,14 +26,36 @@
 
   <canvas id="cursor-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
 
+  <!-- Theme transition: Sun/Moon Rise animation -->
+  <div id="theme-overlay" class="theme-overlay">
+    <div id="celestial-body" class="celestial-body">
+      <div class="celestial-rays"></div>
+    </div>
+  </div>
+
+  <!-- Parallax floating shapes -->
+  <div class="parallax-container" aria-hidden="true">
+    <div class="parallax-shape shape-1"></div>
+    <div class="parallax-shape shape-2"></div>
+    <div class="parallax-shape shape-3"></div>
+    <div class="parallax-shape shape-4"></div>
+    <div class="parallax-shape shape-5"></div>
+  </div>
+
   <header class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
     <div class="container mx-auto flex items-center justify-between py-3 px-6">
       <a href="#" class="flex items-center gap-3 group">
-        <div class="logo group-hover:rotate-12 transition-transform">AZ</div>
+        <div class="flex items-center justify-center h-12 w-12 rounded-xl group-hover:rotate-12 transition-transform relative overflow-hidden" style="background-color: var(--card-bg); border: 2px solid var(--accent); box-shadow: 0 0 15px var(--card-hover-border);">
+          <div class="absolute inset-0 opacity-10" style="background-color: var(--accent);"></div>
+          <span class="font-black text-2xl tracking-tighter z-10" style="color: var(--text-primary); text-shadow: 0 0 5px var(--card-hover-border);">
+            A<span style="color: var(--accent);">Z</span>
+          </span>
+        </div>
         <div>
           <div class="text-[10px] tracking-widest uppercase text-muted">BTS SIO — SISR</div>
-          <div class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-accent">Aziz
-            Benyamina</div>
+          <div class="text-lg font-bold bg-clip-text text-transparent pb-1" style="background-image: linear-gradient(to right, var(--text-primary), var(--accent));">
+            Aziz Benyamina
+          </div>
         </div>
       </a>
 
@@ -32,6 +64,7 @@
         <a href="#profil" class="nav-link">Profil</a>
         <a href="#e6" class="nav-link text-accent">E6 & Infra</a>
         <a href="#projets" class="nav-link">Projets</a>
+        <a href="#tp" class="nav-link">Réalisations</a>
         <a href="#certifications" class="nav-link">Certifs</a>
         <a href="#stages" class="nav-link">Stages</a>
         <a href="#formation" class="nav-link">Formation</a>
@@ -39,9 +72,19 @@
         <a href="#contact" class="btn-sm-solid">Contact</a>
       </nav>
 
-      <button onclick="toggleMenu()" class="md:hidden text-white text-2xl focus:outline-none">
-        <i class="fas fa-bars"></i>
-      </button>
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle theme">
+          <div class="theme-toggle-track">
+            <div class="theme-toggle-thumb">
+              <i class="fas fa-moon theme-icon-dark"></i>
+              <i class="fas fa-sun theme-icon-light"></i>
+            </div>
+          </div>
+        </button>
+        <button onclick="toggleMenu()" class="md:hidden text-white text-2xl focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
     </div>
 
     <div id="mobile-menu"
@@ -50,6 +93,7 @@
       <a href="#profil" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Profil</a>
       <a href="#e6" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5 text-accent">E6 & Infra</a>
       <a href="#projets" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Projets</a>
+      <a href="#tp" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Réalisations</a>
       <a href="#certifications" onclick="toggleMenu()"
         class="py-3 w-full text-center hover:bg-white/5">Certifications</a>
       <a href="#stages" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Stages</a>
@@ -77,7 +121,7 @@
         </h1>
         <p class="text-xl text-muted mb-8 max-w-2xl mx-auto leading-relaxed">
           Futur Administrateur Systèmes & Réseaux. Étudiant passionné en <strong>BTS SIO SISR</strong> au Lycée Turgot.
-          <br><span class="text-sm mt-2 block text-gray-400">Virtualisation • Cybersécurité • Active Directory</span>
+          <br><span class="text-sm mt-3 block text-[var(--accent)] font-mono h-6"><span id="typewriter"></span><span class="typewriter-cursor">|</span></span>
         </p>
         <div class="flex flex-wrap justify-center gap-4">
           <a href="#e6" class="btn-glow">
@@ -93,6 +137,33 @@
         <i class="fas fa-chevron-down text-2xl"></i>
       </a>
     </section>
+
+    <!-- Marquee Banner -->
+    <div class="marquee-banner">
+      <div class="marquee-track">
+        <span>Virtualisation</span><span class="marquee-dot">◆</span>
+        <span>Cybersécurité</span><span class="marquee-dot">◆</span>
+        <span>Active Directory</span><span class="marquee-dot">◆</span>
+        <span>Docker</span><span class="marquee-dot">◆</span>
+        <span>pfSense</span><span class="marquee-dot">◆</span>
+        <span>Proxmox</span><span class="marquee-dot">◆</span>
+        <span>GLPI</span><span class="marquee-dot">◆</span>
+        <span>Kubernetes</span><span class="marquee-dot">◆</span>
+        <span>PowerShell</span><span class="marquee-dot">◆</span>
+        <span>VPN WireGuard</span><span class="marquee-dot">◆</span>
+        <!-- Duplicate for seamless loop -->
+        <span>Virtualisation</span><span class="marquee-dot">◆</span>
+        <span>Cybersécurité</span><span class="marquee-dot">◆</span>
+        <span>Active Directory</span><span class="marquee-dot">◆</span>
+        <span>Docker</span><span class="marquee-dot">◆</span>
+        <span>pfSense</span><span class="marquee-dot">◆</span>
+        <span>Proxmox</span><span class="marquee-dot">◆</span>
+        <span>GLPI</span><span class="marquee-dot">◆</span>
+        <span>Kubernetes</span><span class="marquee-dot">◆</span>
+        <span>PowerShell</span><span class="marquee-dot">◆</span>
+        <span>VPN WireGuard</span><span class="marquee-dot">◆</span>
+      </div>
+    </div>
 
     <section id="profil" class="py-24 relative">
       <div class="container mx-auto px-6">
@@ -118,7 +189,7 @@
                 </div>
                 <div class="flex items-center gap-3 text-sm">
                   <i class="fas fa-envelope text-accent w-6"></i>
-                  <span>aziz.benyamina@exemple.com</span>
+                  <span>aziz.benyamina94@gmail.com</span>
                 </div>
               </div>
             </div>
@@ -139,13 +210,13 @@
                 <div class="glass-card p-4">
                   <div class="flex justify-between items-center mb-2">
                     <span class="font-medium text-sm">Linux (Debian/Ubuntu)</span>
-                    <span class="skill-badge badge-avance">Avancé</span>
+                    <span class="skill-badge badge-confirme">Intermédiaire</span>
                   </div>
                 </div>
                 <div class="glass-card p-4">
                   <div class="flex justify-between items-center mb-2">
                     <span class="font-medium text-sm">Virtualisation (Proxmox)</span>
-                    <span class="skill-badge badge-confirme">Confirmé</span>
+                    <span class="skill-badge badge-confirme">Intermédiaire</span>
                   </div>
                 </div>
               </div>
@@ -153,13 +224,13 @@
                 <div class="glass-card p-4">
                   <div class="flex justify-between items-center mb-2">
                     <span class="font-medium text-sm">Réseau & Sécurité (pfSense)</span>
-                    <span class="skill-badge badge-confirme">Confirmé</span>
+                    <span class="skill-badge badge-initiation">Initié</span>
                   </div>
                 </div>
                 <div class="glass-card p-4">
                   <div class="flex justify-between items-center mb-2">
                     <span class="font-medium text-sm">Gestion de Parc (GLPI)</span>
-                    <span class="skill-badge badge-avance">Avancé</span>
+                    <span class="skill-badge badge-initiation">Initié</span>
                   </div>
                 </div>
                 <div class="glass-card p-4">
@@ -652,6 +723,35 @@
                   class="text-xs text-teal-400 hover:text-teal-300"><i class="fas fa-file-pdf mr-1"></i>Doc Tech</a>
               </div>
             </div>
+            <div
+              class="glass-card p-6 text-center flex flex-col h-full hover:-translate-y-2 transition-transform duration-300"
+              data-aos="zoom-in" data-aos-delay="300">
+              <div
+                class="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto mb-4 text-yellow-400">
+                <i class="fas fa-gamepad text-2xl"></i>
+              </div>
+              <h3 class="font-bold mb-2">Devine le Nombre</h3>
+              <p class="text-xs text-gray-400 flex-grow mb-4">Mini-projet web interactif (HTML/CSS/JavaScript) — jeu de
+                devinette avec logique algorithmique côté client, déployé sur serveur Apache.</p>
+              <div class="flex flex-wrap gap-2 justify-center mb-3">
+                <span class="px-2 py-1 rounded-full bg-orange-500/10 text-orange-400 text-[10px] border border-orange-500/20">HTML</span>
+                <span class="px-2 py-1 rounded-full bg-blue-500/10 text-blue-400 text-[10px] border border-blue-500/20">CSS</span>
+                <span class="px-2 py-1 rounded-full bg-yellow-500/10 text-yellow-400 text-[10px] border border-yellow-500/20">JavaScript</span>
+                <span class="px-2 py-1 rounded-full bg-red-500/10 text-red-400 text-[10px] border border-red-500/20">Apache</span>
+              </div>
+              <div class="flex flex-wrap gap-2 justify-center mb-3">
+                <a href="docmSio/AP-nombres/Cahier des Charges jeu devine le nombre.pdf" target="_blank"
+                  class="text-xs text-cyan-400 hover:text-cyan-300"><i class="fas fa-file-pdf mr-1"></i>Cahier des Charges</a>
+                <a href="docmSio/AP-nombres/Documentation Technique projet devine le nombre.pdf" target="_blank"
+                  class="text-xs text-green-400 hover:text-green-300"><i class="fas fa-file-pdf mr-1"></i>Doc Technique</a>
+                <a href="docmSio/AP-nombres/maquette projet jeu devine le nombre.png" target="_blank"
+                  class="text-xs text-yellow-400 hover:text-yellow-300"><i class="fas fa-image mr-1"></i>Maquette</a>
+              </div>
+              <a href="docmSio/AP-nombres/index.html" target="_blank"
+                class="mt-auto btn-glow text-xs px-4 py-2 mx-auto">
+                <i class="fas fa-play mr-2"></i>Jouer au jeu
+              </a>
+            </div>
           </div>
         </div>
 
@@ -704,13 +804,146 @@
                 <span class="text-xs text-gray-400">SensCyber - E-sensibilisation</span>
               </div>
             </a>
+
+            <!-- Certification Pix -->
+            <a href="certif/certification-pix-20260209.pdf" target="_blank"
+              class="glass-card p-4 hover:border-purple-500/50 transition-all group block" data-aos="fade-up"
+              data-aos-delay="300">
+              <div class="overflow-hidden rounded-lg mb-4 bg-white/5 h-48 flex items-center justify-center">
+                <img src="certif/certifpix.png" alt="Certificat Pix"
+                  class="w-32 h-32 object-contain group-hover:scale-105 transition-transform" onerror="this.outerHTML='<i class=\'fas fa-star text-4xl text-purple-400\'></i>'">
+              </div>
+              <div class="text-center">
+                <h4 class="font-bold text-white group-hover:text-accent transition-colors">Certification Pix</h4>
+                <span class="text-xs text-gray-400">Compétences Numériques</span>
+              </div>
+            </a>
           </div>
         </div>
 
       </div>
     </section>
 
-    <section id="stages" class="py-24 bg-black/20">
+    <!-- SECTION TRAVAUX PRATIQUES -->
+    <section id="tp" class="py-24 bg-black/20">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <h2 class="text-4xl font-bold mb-4">Réalisations <span class="text-accent">Techniques</span></h2>
+          <p class="text-muted">Travaux pratiques et documentations réalisés en BTS SIO SISR</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <!-- TP 1: Services Réseau & Sécurité -->
+          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up">
+            <div class="w-14 h-14 bg-red-500/20 rounded-lg flex items-center justify-center mb-4">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/PfSense_logo.png/220px-PfSense_logo.png" alt="pfSense" class="w-8 h-8 object-contain invert">
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-white">Services Réseau & Sécurité</h3>
+            <p class="text-xs text-gray-400 mb-4">Configuration pfSense, DHCP, DNS — mise en place de services réseau sécurisés.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-1 rounded bg-red-500/10 text-red-400 text-[10px] border border-red-500/20">pfSense</span>
+              <span class="px-2 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] border border-blue-500/20">DHCP</span>
+              <span class="px-2 py-1 rounded bg-green-500/10 text-green-400 text-[10px] border border-green-500/20">DNS</span>
+            </div>
+            <a href="docmSio/Documents Officiels/PfSense_Aziz.pdf" target="_blank"
+              class="tp-doc-link flex items-center gap-2 text-xs text-red-400 hover:text-red-300 transition-colors">
+              <i class="fas fa-file-pdf"></i> Documentation pfSense
+            </a>
+          </div>
+
+          <!-- TP 2: Gestion de Parc -->
+          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-14 h-14 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-4">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="GLPI" class="w-8 h-8 object-contain">
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-white">Gestion de Parc</h3>
+            <p class="text-xs text-gray-400 mb-4">Déploiement et administration GLPI — inventaire, tickets, gestion des actifs.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-400 text-[10px] border border-cyan-500/20">GLPI</span>
+              <span class="px-2 py-1 rounded bg-purple-500/10 text-purple-400 text-[10px] border border-purple-500/20">GPO Agent</span>
+            </div>
+            <div class="space-y-2">
+              <a href="docmSio/Documents Officiels/Documentation-Installation GLPI sur Debian.pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-cyan-400 hover:text-cyan-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> Installation GLPI sur Debian
+              </a>
+              <a href="docmSio/Documents Officiels/Documentation-Configuration par GPO de l'Agent-GLPI.pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-purple-400 hover:text-purple-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> Config GPO Agent GLPI
+              </a>
+            </div>
+          </div>
+
+          <!-- TP 3: Administration & Active Directory -->
+          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-14 h-14 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows" class="w-8 h-8 object-contain">
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-white">Administration & Active Directory</h3>
+            <p class="text-xs text-gray-400 mb-4">Installation Active Directory DS, GPO, scripting Bash et PowerShell.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-1 rounded bg-purple-500/10 text-purple-400 text-[10px] border border-purple-500/20">AD DS</span>
+              <span class="px-2 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] border border-blue-500/20">GPO</span>
+              <span class="px-2 py-1 rounded bg-green-500/10 text-green-400 text-[10px] border border-green-500/20">Windows Server</span>
+            </div>
+            <a href="docmSio/Documents Officiels/Documentation-Installation Active Directory (AD DS) Windows Server 2022.pdf" target="_blank"
+              class="tp-doc-link flex items-center gap-2 text-xs text-purple-400 hover:text-purple-300 transition-colors">
+              <i class="fas fa-file-pdf"></i> Installation AD DS Windows Server 2022
+            </a>
+          </div>
+
+          <!-- TP 4: Infrastructures Réseau -->
+          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up" data-aos-delay="300">
+            <div class="w-14 h-14 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cisco/cisco-original.svg" alt="Cisco" class="w-8 h-8 object-contain" onerror="this.outerHTML='<i class=\'fas fa-network-wired text-2xl text-orange-400\'></i>'">
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-white">Infrastructures Réseau</h3>
+            <p class="text-xs text-gray-400 mb-4">Configuration switch, routeur, VLANs — conception d'architectures réseau Cisco.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-1 rounded bg-orange-500/10 text-orange-400 text-[10px] border border-orange-500/20">Switch</span>
+              <span class="px-2 py-1 rounded bg-yellow-500/10 text-yellow-400 text-[10px] border border-yellow-500/20">Routeur</span>
+              <span class="px-2 py-1 rounded bg-teal-500/10 text-teal-400 text-[10px] border border-teal-500/20">Cisco IOS</span>
+            </div>
+            <div class="space-y-2">
+              <a href="docmSio/Documents Officiels/switch.pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-orange-400 hover:text-orange-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> TP Switch
+              </a>
+              <a href="docmSio/Documents Officiels/router-cisco .pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-yellow-400 hover:text-yellow-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> TP Routeur Cisco
+              </a>
+
+            </div>
+          </div>
+
+          <!-- TP 5: Virtualisation -->
+          <div class="glass-card p-6 hover:border-accent/50 transition-all" data-aos="fade-up" data-aos-delay="400">
+            <div class="w-14 h-14 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-8 h-8 object-contain">
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-white">Virtualisation</h3>
+            <p class="text-xs text-gray-400 mb-4">Déploiement Proxmox VE, création et gestion de VMs, conteneurs Docker.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-1 rounded bg-orange-500/10 text-orange-400 text-[10px] border border-orange-500/20">Proxmox</span>
+              <span class="px-2 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] border border-blue-500/20">Docker</span>
+            </div>
+            <div class="space-y-2">
+              <a href="docmSio/Documents Officiels/Proxmox-1.pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-orange-400 hover:text-orange-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> TP Proxmox VE
+              </a>
+              <a href="docmSio/Documents Officiels/SynthèseDocker.pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> Synthèse Docker
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stages" class="py-24">
       <div class="container mx-auto px-6">
         <h2 class="section-title text-center mb-12" data-aos="fade-up">Expériences Professionnelles</h2>
 
@@ -836,12 +1069,12 @@
                   <div class="border-t border-white/10 pt-4">
                     <h5 class="text-sm font-bold mb-3 text-gray-400">Compétences acquises :</h5>
                     <div class="flex gap-2 flex-wrap">
-                      <span class="skill-badge badge-avance">Docker</span>
-                      <span class="skill-badge badge-avance">Kubernetes (K3s)</span>
-                      <span class="skill-badge badge-confirme">GitLab CI/CD</span>
-                      <span class="skill-badge badge-confirme">WireGuard VPN</span>
-                      <span class="skill-badge badge-avance">Cybersécurité</span>
-                      <span class="skill-badge badge-confirme">Durcissement Serveur</span>
+                      <span class="skill-badge badge-confirme">Docker (Initié)</span>
+                      <span class="skill-badge badge-confirme">Kubernetes/K3s (Découverte)</span>
+                      <span class="skill-badge badge-confirme">GitLab CI/CD (Initié)</span>
+                      <span class="skill-badge badge-avance">WireGuard VPN (Intermédiaire)</span>
+                      <span class="skill-badge badge-avance">Cybersécurité (Intermédiaire)</span>
+                      <span class="skill-badge badge-avance">Durcissement Serveur (Intermédiaire)</span>
                     </div>
                     <a href="pdf/Rapport_de_Stage_JA.pdf" target="_blank" class="btn-solid mt-4">
                       <i class="fas fa-file-pdf mr-2"></i> Lire le Rapport de Stage
@@ -997,73 +1230,89 @@
           </div>
         </div>
 
-        <!-- Les 3 Piliers de la Veille IA & Cybersécurité -->
+        <!-- Résumé de l'Analyse 2025-2026 -->
         <div class="max-w-6xl mx-auto mt-12" data-aos="fade-up">
-          <div class="flex items-center justify-between mb-8">
-            <h3 class="text-2xl font-bold flex items-center gap-3">
-              <i class="fas fa-brain text-accent"></i>
-              Les 3 Piliers : IA & Cybersécurité
-              <span class="text-xs bg-accent/20 text-accent px-2 py-1 rounded-full animate-pulse">LIVE</span>
-            </h3>
-            <button onclick="refreshVeille()" class="text-sm text-accent hover:text-white transition-colors">
-              <i class="fas fa-sync-alt mr-1"></i> Actualiser
-            </button>
+          <div class="flex flex-col md:flex-row items-center justify-between mb-8 gap-4 px-4 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 shadow-xl w-full">
+            <div>
+              <h3 class="text-2xl font-bold flex items-center gap-3 text-[var(--text-primary)] mb-2">
+                <i class="fas fa-brain text-accent"></i>
+                Analyse Prospective 2025-2026
+              </h3>
+              <p class="text-xs text-[var(--text-muted)] max-w-xl">L’Évolution du Paradigme de la Cybersécurité à l’Ère de l’IA. De l'automatisation de l'attaque vers le SOC Autonome.</p>
+            </div>
+            <!-- Bouton vers le PDF fourni -->
+            <a href="docmSio/IA et Cybersécurité _ Impacts et Défis.pdf" target="_blank" class="btn-glow flex flex-shrink-0 items-center justify-center gap-2 whitespace-nowrap shadow-[0_0_15px_var(--accent)] w-full md:w-auto">
+              <i class="fas fa-file-pdf"></i>
+              Lire le Dossier Complet
+            </a>
           </div>
 
           <div class="grid lg:grid-cols-3 gap-6">
-            <!-- PILIER 1: IA Offensive -->
-            <div class="glass-card p-6 border-red-500/30">
-              <div class="flex items-center gap-3 mb-4 pb-4 border-b border-red-500/20">
+            <!-- PILIER 1: La Vélocité -->
+            <div class="glass-card p-6 hover:border-[var(--card-hover-border)] transition-colors border-l-4 border-l-red-500">
+              <div class="flex items-center gap-3 mb-4 pb-4 border-b border-[var(--card-border)]">
                 <div class="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center">
-                  <i class="fas fa-skull-crossbones text-red-400"></i>
+                  <i class="fas fa-tachometer-alt text-red-400"></i>
                 </div>
                 <div>
-                  <h4 class="font-bold text-red-400">IA Offensive</h4>
-                  <p class="text-xs text-gray-500">The Dark Side</p>
+                  <h4 class="font-bold text-[var(--text-primary)]">Vélocité d'Attaque</h4>
+                  <p class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Breakout Time</p>
                 </div>
               </div>
-              <div id="veille-offensive" class="space-y-3">
-                <div class="bg-white/5 p-3 rounded-lg animate-pulse">
-                  <div class="h-3 bg-gray-700 rounded w-3/4 mb-2"></div>
-                  <div class="h-2 bg-gray-700 rounded w-1/2"></div>
+              <div class="space-y-3">
+                <div class="bg-[var(--section-alt-bg)] p-3 rounded-lg border border-[var(--card-border)]">
+                  <h5 class="text-sm font-bold text-[var(--text-primary)] mb-1">Chute du Breakout Time</h5>
+                  <p class="text-xs text-[var(--text-secondary)]">En 2025, le temps moyen mis par un adversaire pour se déplacer latéralement (breakout time) a chuté à <strong>29 minutes</strong> (contre 62 min en 2024), soit une accélération de 65% grâce à l'IA.</p>
+                </div>
+                <div class="bg-[var(--section-alt-bg)] p-3 rounded-lg border border-[var(--card-border)]">
+                  <h5 class="text-sm font-bold text-[var(--text-primary)] mb-1">Living Off the AI Land</h5>
+                  <p class="text-xs text-[var(--text-secondary)]">82% des détections "malware-free" utilisent des IA internes d'entreprise comme outils pour extraire des secrets ou comprendre le réseau, échappant aux détections classiques.</p>
                 </div>
               </div>
             </div>
 
-            <!-- PILIER 2: IA Défensive -->
-            <div class="glass-card p-6 border-green-500/30">
-              <div class="flex items-center gap-3 mb-4 pb-4 border-b border-green-500/20">
-                <div class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
-                  <i class="fas fa-shield-alt text-green-400"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold text-green-400">IA Défensive</h4>
-                  <p class="text-xs text-gray-500">The Shield</p>
-                </div>
-              </div>
-              <div id="veille-defensive" class="space-y-3">
-                <div class="bg-white/5 p-3 rounded-lg animate-pulse">
-                  <div class="h-3 bg-gray-700 rounded w-3/4 mb-2"></div>
-                  <div class="h-2 bg-gray-700 rounded w-1/2"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- PILIER 3: Adversarial ML -->
-            <div class="glass-card p-6 border-purple-500/30">
-              <div class="flex items-center gap-3 mb-4 pb-4 border-b border-purple-500/20">
+            <!-- PILIER 2: Déception Synthétique -->
+            <div class="glass-card p-6 hover:border-[var(--card-hover-border)] transition-colors border-l-4 border-l-purple-500">
+              <div class="flex items-center gap-3 mb-4 pb-4 border-b border-[var(--card-border)]">
                 <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
-                  <i class="fas fa-crosshairs text-purple-400"></i>
+                  <i class="fas fa-masks-theater text-purple-400"></i>
                 </div>
                 <div>
-                  <h4 class="font-bold text-purple-400">IA comme Cible</h4>
-                  <p class="text-xs text-gray-500">Adversarial ML</p>
+                  <h4 class="font-bold text-[var(--text-primary)]">Déception Synthétique</h4>
+                  <p class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Deepfakes & Polymorphisme</p>
                 </div>
               </div>
-              <div id="veille-adversarial" class="space-y-3">
-                <div class="bg-white/5 p-3 rounded-lg animate-pulse">
-                  <div class="h-3 bg-gray-700 rounded w-3/4 mb-2"></div>
-                  <div class="h-2 bg-gray-700 rounded w-1/2"></div>
+              <div class="space-y-3">
+                <div class="bg-[var(--section-alt-bg)] p-3 rounded-lg border border-[var(--card-border)]">
+                  <h5 class="text-sm font-bold text-[var(--text-primary)] mb-1">Deepfakes & Ingénierie</h5>
+                  <p class="text-xs text-[var(--text-secondary)]">Une fraude BEC record a coûté <strong>25 millions $</strong> à Hong Kong avec une visio où tous les participants étaient des clones. 51% du spam actuel est écrit par IA (phishing sans erreur multilingue).</p>
+                </div>
+                <div class="bg-[var(--section-alt-bg)] p-3 rounded-lg border border-[var(--card-border)]">
+                  <h5 class="text-sm font-bold text-[var(--text-primary)] mb-1">Malwares IA & IDPI</h5>
+                  <p class="text-xs text-[var(--text-secondary)]">Des prototypes comme <strong>Promptflux</strong> utilisent Gemini pour réécrire leur propre payload toutes les heures, échappant à 100% à l'EDR. Risque majeur d'injections de requêtes indirectes (IDPI).</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- PILIER 3: La Riposte / SOC Autonome -->
+            <div class="glass-card p-6 hover:border-[var(--card-hover-border)] transition-colors border-l-4 border-l-green-500">
+              <div class="flex items-center gap-3 mb-4 pb-4 border-b border-[var(--card-border)]">
+                <div class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                  <i class="fas fa-shield-virus text-green-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-[var(--text-primary)]">Riposte Défensive</h4>
+                  <p class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">SOC Autonome & Agentique</p>
+                </div>
+              </div>
+              <div class="space-y-3">
+                <div class="bg-[var(--section-alt-bg)] p-3 rounded-lg border border-[var(--card-border)]">
+                  <h5 class="text-sm font-bold text-[var(--text-primary)] mb-1">L'Agentic SOC</h5>
+                  <p class="text-xs text-[var(--text-secondary)]">Les LLMs réduisent de <strong>88%</strong> le temps d'investigation. L'IA triage les alertes, génère des synthèses en langage naturel et orchestre les playbooks SOAR (neutralisation en millisecondes).</p>
+                </div>
+                <div class="bg-[var(--section-alt-bg)] p-3 rounded-lg border border-[var(--card-border)]">
+                  <h5 class="text-sm font-bold text-[var(--text-primary)] mb-1">Souveraineté (IA Act)</h5>
+                  <p class="text-xs text-[var(--text-secondary)]">Face à l'automatisation offensive, l'UE impose l'<strong>IA Act</strong> et le <strong>CRA</strong> (Cyber Resilience Act 2026), exigeant la souveraineté par conception et une robuste sécurité des modèles.</p>
                 </div>
               </div>
             </div>
@@ -1076,10 +1325,16 @@
       <div class="container mx-auto px-6 text-center">
         <h2 class="text-2xl font-bold mb-6">Documents Officiels</h2>
         <div class="flex justify-center gap-4 flex-wrap">
-          <a href="pdf/annexe-bts.pdf" target="_blank"
-            class="glass-card px-8 py-4 hover:bg-accent/10 transition-colors flex items-center gap-3">
-            <i class="fas fa-table text-accent"></i> Tableau de Synthèse E4
-          </a>
+          <div class="flex flex-col gap-2">
+            <a href="E5/annexe-bts_aziz.pdf" target="_blank"
+              class="glass-card px-8 py-4 hover:bg-accent/10 transition-colors flex items-center gap-3 w-full justify-center">
+              <i class="fas fa-file-pdf text-accent"></i> Synthèse E5 (PDF)
+            </a>
+            <a href="E5/annexe-bts_aziz.xlsx" download
+              class="glass-card px-8 py-4 hover:bg-green-500/10 transition-colors flex items-center gap-3 w-full justify-center border-green-500/20">
+              <i class="fas fa-file-excel text-green-400"></i> Synthèse E5 (Excel)
+            </a>
+          </div>
           <a href="pdf/cv.pdf" target="_blank"
             class="glass-card px-8 py-4 hover:bg-accent/10 transition-colors flex items-center gap-3">
             <i class="fas fa-file-alt text-accent"></i> Curriculum Vitae
@@ -1111,6 +1366,10 @@
     </section>
 
   </main>
+
+  <button id="scrollToTopBtn" onclick="scrollToTop()" class="scroll-to-top" aria-label="Retour en haut">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <footer class="py-8 text-center border-t border-white/5 text-sm text-gray-500">
     <p>© 2025 Aziz Benyamina-Houari • BTS SIO SISR • Portfolio</p>

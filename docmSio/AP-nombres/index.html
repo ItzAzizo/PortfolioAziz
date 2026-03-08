@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu Devine le Nombre</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #05080f;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #05080f 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .btn-glow {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+        .btn-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.6);
+        }
+        .input-num {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            font-size: 1.25rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            outline: none;
+        }
+        .input-num:focus {
+            border-color: #a855f7;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+        }
+        .message {
+            font-size: 1.1rem;
+            margin: 1rem 0;
+            min-height: 1.5rem;
+            transition: color 0.3s;
+        }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+        .hint { color: #fbbf24; }
+        .back-btn {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            color: #94a3b8;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+        .back-btn:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="../../index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Retour au Portfolio
+    </a>
+
+    <div class="glass-card max-w-md w-full mx-4 relative overflow-hidden">
+        <div class="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto mb-4 text-yellow-400">
+            <i class="fas fa-gamepad text-3xl"></i>
+        </div>
+        <h1 class="text-3xl font-bold mb-2">Devine le Nombre</h1>
+        <p class="text-sm text-gray-400 mb-6">J'ai choisi un nombre entre 1 et 100.</p>
+        
+        <div id="game-area">
+            <input type="number" id="guess" class="input-num" placeholder="Entrez un nombre (1-100)" min="1" max="100">
+            <button onclick="checkGuess()" id="btn-submit" class="btn-glow w-full mb-4">Essayer</button>
+            <div id="message" class="message"></div>
+            <div class="text-xs text-gray-500 mt-4">Essais restants : <span id="attempts" class="font-bold text-white">10</span></div>
+            <div id="history-container" class="mt-6 text-left hidden">
+                <h3 class="text-sm font-bold text-gray-300 mb-2 border-b border-white/10 pb-1">Historique des essais</h3>
+                <ul id="history-list" class="space-y-1 text-xs max-h-32 overflow-y-auto pr-2 custom-scrollbar"></ul>
+            </div>
+        </div>
+
+        <div id="end-area" style="display: none;">
+            <button onclick="resetGame()" class="btn-glow w-full mt-4"><i class="fas fa-redo mr-2"></i>Rejouer</button>
+        </div>
+    </div>
+
+    <script>
+        let targetNumber;
+        let attemptsLeft;
+        const maxAttempts = 10;
+        
+        const guessInput = document.getElementById('guess');
+        const messageEl = document.getElementById('message');
+        const attemptsEl = document.getElementById('attempts');
+        const btnSubmit = document.getElementById('btn-submit');
+        const gameArea = document.getElementById('game-area');
+        const endArea = document.getElementById('end-area');
+        const historyContainer = document.getElementById('history-container');
+        const historyList = document.getElementById('history-list');
+
+        function initGame() {
+            targetNumber = Math.floor(Math.random() * 100) + 1;
+            attemptsLeft = maxAttempts;
+            attemptsEl.textContent = attemptsLeft;
+            messageEl.textContent = '';
+            messageEl.className = 'message';
+            guessInput.value = '';
+            guessInput.disabled = false;
+            btnSubmit.disabled = false;
+            endArea.style.display = 'none';
+            historyContainer.classList.add('hidden');
+            historyList.innerHTML = '';
+            guessInput.focus();
+        }
+
+        function checkGuess() {
+            const userGuess = parseInt(guessInput.value);
+
+            if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+                showMessage("Veuillez entrer un nombre valide entre 1 et 100.", "error");
+                return;
+            }
+
+            attemptsLeft--;
+            attemptsEl.textContent = attemptsLeft;
+            historyContainer.classList.remove('hidden');
+
+            let historyText = "";
+            let historyClass = "";
+
+            if (userGuess === targetNumber) {
+                showMessage(`🎉 Bravo ! Vous avez trouvé le nombre en ${maxAttempts - attemptsLeft} essai(s) !`, "success");
+                historyText = `🎉 ${userGuess} - Gagné !`;
+                historyClass = "text-green-400 font-bold bg-green-500/10";
+                endGame();
+            } else if (attemptsLeft === 0) {
+                showMessage(`💀 Perdu ! Le nombre était ${targetNumber}.`, "error");
+                historyText = `💀 ${userGuess} - Perdu`;
+                historyClass = "text-red-400 bg-red-500/10";
+                endGame();
+            } else if (userGuess < targetNumber) {
+                showMessage("⬆️ C'est plus !", "hint");
+                historyText = `⬆️ ${userGuess} - C'est plus`;
+                historyClass = "text-yellow-400 bg-yellow-500/10";
+            } else {
+                showMessage("⬇️ C'est moins !", "hint");
+                historyText = `⬇️ ${userGuess} - C'est moins`;
+                historyClass = "text-yellow-400 bg-yellow-500/10";
+            }
+
+            const li = document.createElement("li");
+            li.textContent = historyText;
+            li.className = `p-2 rounded flex items-center gap-2 ${historyClass}`;
+            historyList.appendChild(li);
+            historyList.scrollTop = historyList.scrollHeight;
+
+            guessInput.value = '';
+            guessInput.focus();
+        }
+
+        function showMessage(msg, type) {
+            messageEl.textContent = msg;
+            messageEl.className = `message ${type}`;
+        }
+
+        function endGame() {
+            guessInput.disabled = true;
+            btnSubmit.disabled = true;
+            endArea.style.display = 'block';
+        }
+
+        function resetGame() {
+            initGame();
+        }
+
+        // Allow pressing Enter to submit
+        guessInput.addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                checkGuess();
+            }
+        });
+
+        // Initialize on load
+        initGame();
+    </script>
+</body>
+</html>

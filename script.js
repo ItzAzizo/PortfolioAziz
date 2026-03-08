@@ -1,4 +1,6 @@
-// Initialisation AOS (Animate On Scroll) - Animations réduites
+// ============================================
+// INITIALISATION AOS
+// ============================================
 AOS.init({
   duration: 400,
   offset: 50,
@@ -6,7 +8,9 @@ AOS.init({
   disable: false
 });
 
-// Animation des barres de compétences
+// ============================================
+// SKILL BARS ANIMATION
+// ============================================
 document.addEventListener("DOMContentLoaded", () => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -24,13 +28,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Menu Mobile Toggle
+// ============================================
+// MOBILE MENU TOGGLE
+// ============================================
 function toggleMenu() {
   const menu = document.getElementById('mobile-menu');
   menu.classList.toggle('hidden');
 }
 
-// Effet Particules (Canvas) - Animation souris
+// ============================================
+// CURSOR PARTICLES (Canvas)
+// ============================================
 const canvas = document.getElementById('cursor-canvas');
 if (canvas) {
   const ctx = canvas.getContext('2d');
@@ -62,6 +70,7 @@ if (canvas) {
 
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const isLight = document.documentElement.classList.contains('light-mode');
     particles.forEach((p, index) => {
       p.x += p.speedX;
       p.y += p.speedY;
@@ -71,7 +80,9 @@ if (canvas) {
       } else {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(139, 92, 246, ${p.life})`;
+        ctx.fillStyle = isLight
+          ? `rgba(124, 58, 237, ${p.life * 0.5})`
+          : `rgba(139, 92, 246, ${p.life})`;
         ctx.fill();
       }
     });
@@ -81,12 +92,77 @@ if (canvas) {
 }
 
 // ============================================
+// DARK / LIGHT THEME TOGGLE
+// with Sun/Moon Rise Animation
+// ============================================
+function toggleTheme() {
+  const html = document.documentElement;
+  const overlay = document.getElementById('theme-overlay');
+  const celestial = document.getElementById('celestial-body');
+  const isLight = html.classList.contains('light-mode');
+
+  // Reset celestial body for fresh animation
+  if (celestial) {
+    celestial.style.animation = 'none';
+    celestial.offsetHeight; // Force reflow
+    celestial.style.animation = '';
+  }
+
+  // Set overlay direction
+  overlay.classList.remove('to-light', 'to-dark');
+  overlay.classList.add(isLight ? 'to-dark' : 'to-light');
+
+  // Trigger animation — celestial body rises from bottom
+  overlay.classList.add('active');
+  
+  // Switch theme when celestial body reaches midpoint
+  setTimeout(() => {
+    html.classList.toggle('light-mode');
+    localStorage.setItem('theme', html.classList.contains('light-mode') ? 'light' : 'dark');
+  }, 400);
+
+  // Fade out overlay after celestial rise completes
+  setTimeout(() => {
+    overlay.classList.remove('active');
+  }, 900);
+}
+
+// Load saved theme on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    document.documentElement.classList.add('light-mode');
+  }
+});
+
+// ============================================
+// PARALLAX ON SCROLL (Inverse direction)
+// ============================================
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const scrollY = window.scrollY;
+      const shapes = document.querySelectorAll('.parallax-shape');
+      
+      shapes.forEach((shape, i) => {
+        // Inverse parallax: shapes move OPPOSITE to scroll direction
+        const speed = (i + 1) * 0.03;
+        const direction = i % 2 === 0 ? 1 : -1;
+        shape.style.transform = `translateY(${scrollY * speed * direction}px)`;
+      });
+      
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// ============================================
 // VEILLE CYBERSÉCURITÉ - 3 PILIERS IA
 // ============================================
 
-// Les 3 piliers de la veille IA & Cybersécurité
 const veilleData = {
-  // PILIER 1: IA Offensive (The Dark Side)
   offensive: [
     {
       title: "Prompt Injection : Menace #1 OWASP 2025",
@@ -118,7 +194,6 @@ const veilleData = {
     }
   ],
 
-  // PILIER 2: IA Défensive (The Shield)
   defensive: [
     {
       title: "UEBA : Détection comportementale",
@@ -150,7 +225,6 @@ const veilleData = {
     }
   ],
 
-  // PILIER 3: IA comme Cible (Adversarial ML)
   adversarial: [
     {
       title: "Empoisonnement des données d'entraînement",
@@ -183,7 +257,6 @@ const veilleData = {
   ]
 };
 
-// Fonction pour afficher les 3 piliers de veille
 function displayVeillePiliers() {
   const containers = {
     offensive: document.getElementById('veille-offensive'),
@@ -209,10 +282,10 @@ function displayVeillePiliers() {
         <div class="flex items-start gap-3">
           <i class="fas ${item.icon} ${color.icon} text-lg mt-1"></i>
           <div class="flex-grow">
-            <h5 class="font-bold text-sm text-white mb-1">${item.title}</h5>
-            <p class="text-xs text-gray-400 leading-relaxed">${item.desc}</p>
+            <h5 class="font-bold text-sm mb-1" style="color: var(--text-primary)">${item.title}</h5>
+            <p class="text-xs leading-relaxed" style="color: var(--text-muted)">${item.desc}</p>
             <div class="flex items-center justify-between mt-2">
-              <span class="text-xs text-gray-500"><i class="fas fa-calendar-alt mr-1"></i>${item.date}</span>
+              <span class="text-xs" style="color: var(--text-muted)"><i class="fas fa-calendar-alt mr-1"></i>${item.date}</span>
               <span class="text-xs ${color.icon}"><i class="fas fa-external-link-alt mr-1"></i>Source</span>
             </div>
           </div>
@@ -222,7 +295,6 @@ function displayVeillePiliers() {
   });
 }
 
-// Fonction pour rafraîchir avec animation
 function refreshVeille() {
   const allContainers = document.querySelectorAll('[id^="veille-"]');
   allContainers.forEach(container => {
@@ -236,21 +308,17 @@ function refreshVeille() {
   setTimeout(displayVeillePiliers, 500);
 }
 
-// Charger au chargement de la page
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(displayVeillePiliers, 800);
 });
 
 // ============================================
-// FILTRAGE DES TECHNOLOGIES
+// TECH FILTER
 // ============================================
-
 function filterTech(category) {
   const icons = document.querySelectorAll('.tech-track .tech-icon');
   const buttons = document.querySelectorAll('.tech-filter');
-  const track = document.querySelector('.tech-track');
 
-  // Mettre à jour les boutons actifs
   buttons.forEach(btn => {
     btn.classList.remove('active');
     if (btn.dataset.filter === category) {
@@ -258,7 +326,6 @@ function filterTech(category) {
     }
   });
 
-  // Filtrer les icônes avec animation (opacité au lieu de cacher)
   icons.forEach(icon => {
     const iconCategory = icon.dataset.category;
 
@@ -269,5 +336,74 @@ function filterTech(category) {
       icon.style.opacity = '0.15';
       icon.style.transform = 'scale(0.9)';
     }
+  });
+}
+
+// ============================================
+// TYPEWRITER EFFECT
+// ============================================
+const typewriterElement = document.getElementById('typewriter');
+if (typewriterElement) {
+  const words = ["Virtualisation", "Cybersécurité", "Active Directory", "Réseaux & Infrastructures"];
+  let i = 0;
+  let timer;
+
+  function typingEffect() {
+    let word = words[i].split("");
+    var loopTyping = function() {
+      if (word.length > 0) {
+        typewriterElement.innerHTML += word.shift();
+      } else {
+        setTimeout(deletingEffect, 2000); // 2 second pause before deleting
+        return false;
+      };
+      timer = setTimeout(loopTyping, 100); // Typing speed
+    };
+    loopTyping();
+  }
+
+  function deletingEffect() {
+    let word = words[i].split("");
+    var loopDeleting = function() {
+      if (word.length > 0) {
+        word.pop();
+        typewriterElement.innerHTML = word.join("");
+      } else {
+        if (words.length > (i + 1)) {
+          i++;
+        } else {
+          i = 0;
+        }
+        setTimeout(typingEffect, 500); // 0.5s pause before typing next word
+        return false;
+      }
+      timer = setTimeout(loopDeleting, 50); // Deleting speed
+    };
+    loopDeleting();
+  }
+
+  // Start the typing effect
+  setTimeout(typingEffect, 1000);
+}
+
+// ============================================
+// SCROLL TO TOP BUTTON
+// ============================================
+const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+if (scrollToTopBtn) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 500) {
+      scrollToTopBtn.classList.add("show");
+    } else {
+      scrollToTopBtn.classList.remove("show");
+    }
+  });
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
   });
 }
