@@ -60,7 +60,8 @@
       <nav class="hidden md:flex space-x-6 text-sm font-medium">
         <a href="#accueil" class="nav-link">Accueil</a>
         <a href="#profil" class="nav-link">Profil</a>
-        <a href="#e6" class="nav-link text-accent">E6 & Infra</a>
+        <a href="#infra" class="nav-link">Infra</a>
+        <a href="#e6" class="nav-link text-accent">E6</a>
         <a href="#tp" class="nav-link">Réalisations</a>
         <a href="#projets" class="nav-link">Projets</a>
         <a href="#certifications" class="nav-link">Certifs</a>
@@ -89,7 +90,8 @@
       class="hidden md:hidden flex flex-col items-center py-4 glass-nav absolute w-full border-t border-white/10">
       <a href="#accueil" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Accueil</a>
       <a href="#profil" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Profil</a>
-      <a href="#e6" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5 text-accent">E6 & Infra</a>
+      <a href="#infra" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Infra</a>
+      <a href="#e6" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5 text-accent">E6</a>
       <a href="#tp" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Réalisations</a>
       <a href="#projets" onclick="toggleMenu()" class="py-3 w-full text-center hover:bg-white/5">Projets</a>
       <a href="#certifications" onclick="toggleMenu()"
@@ -575,64 +577,132 @@
       </div>
     </section>
 
+    <!-- SECTION INFRASTRUCTURE -->
+    <section id="infra" class="py-24 bg-black/20">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <h2 class="text-4xl font-bold mb-4">Infrastructure <span class="text-accent">MFC</span></h2>
+          <p class="text-muted max-w-2xl mx-auto">Schéma global de l'infrastructure réseau — Proxmox VE</p>
+        </div>
+        <div class="glass-card p-1 border-accent/30 mx-auto max-w-5xl" data-aos="zoom-in">
+          <div class="bg-gray-900/80 rounded-lg p-4 relative min-h-[300px] flex items-center justify-center group">
+            <img src="E6/infra.png" alt="Schéma Infrastructure MFC"
+              class="max-h-[500px] w-auto rounded shadow-2xl">
+          </div>
+          <div class="p-4 text-center border-t border-white/5">
+            <p class="text-sm text-accent font-mono"><i class="fas fa-info-circle mr-2"></i>Infrastructure MFC : Proxmox VE + VLANs + pfSense HA (CARP) + Windows Server AD + GLPI</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION E6 -->
     <section id="e6" class="py-24">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16" data-aos="fade-up">
           <h2 class="text-4xl font-bold mb-4">Situations Professionnelles <span class="text-accent">E6</span></h2>
-          <p class="text-muted">Support de l'épreuve "Administration des systèmes et des réseaux".</p>
+          <p class="text-muted max-w-2xl mx-auto">Support de l'épreuve « Administration des systèmes et des réseaux »</p>
         </div>
 
-        <div class="glass-card p-1 mb-16 border-accent/30 mx-auto max-w-5xl" data-aos="zoom-in">
-          <div class="bg-gray-900/80 rounded-lg p-4 relative min-h-[300px] flex items-center justify-center group">
-            <img src="images/infra_sisr2.png" alt="Schéma Infrastructure"
-              class="max-h-[500px] w-auto rounded shadow-2xl">
-
-          </div>
-          <div class="p-4 text-center border-t border-white/5">
-            <p class="text-sm text-accent font-mono"><i class="fas fa-info-circle mr-2"></i>Infrastructure hybride :
-              Proxmox VE + VLANs + pfSense + Windows Server AD</p>
-          </div>
-        </div>
-
+        <!-- Deux réalisations E6 -->
         <div class="grid lg:grid-cols-2 gap-8">
-          <div class="glass-card p-8 hover:border-accent/50 transition-colors" data-aos="fade-right">
+
+          <!-- RÉALISATION 1 : GPO / GLPI Agent (Windows) -->
+          <div class="glass-card p-8 hover:border-accent/50 transition-colors relative overflow-hidden" data-aos="fade-right">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
             <div class="flex items-start justify-between mb-6">
               <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400"><i class="fab fa-windows text-3xl"></i></div>
-              <span class="text-xs font-bold border border-blue-500/30 text-blue-400 px-2 py-1 rounded">Réalisation
-                1</span>
+              <span class="text-xs font-bold border border-blue-500/30 text-blue-400 px-2 py-1 rounded">Réalisation 1</span>
             </div>
-            <h3 class="text-2xl font-bold mb-2">Active Directory & DNS</h3>
-            <p class="text-gray-400 text-sm mb-6">
-              Déploiement d'une infrastructure de gestion des identités centralisée sous Windows Server 2022.
+            <h3 class="text-xl font-bold mb-1 text-white">Déploiement automatisé de l'agent GLPI</h3>
+            <p class="text-xs text-blue-400 font-mono mb-4">par Stratégie de Groupe (GPO)</p>
+            <p class="text-gray-400 text-sm mb-5">
+              Automatisation du déploiement de l'agent d'inventaire GLPI sur l'ensemble du parc Windows de la MFC via une stratégie de groupe (GPO), garantissant un inventaire centralisé et à jour.
             </p>
-            <ul class="space-y-2 text-sm text-gray-300 mb-6">
-              <li><i class="fas fa-check text-accent mr-2"></i>Installation Forêt AD DS</li>
-              <li><i class="fas fa-check text-accent mr-2"></i>Configuration DNS & DHCP</li>
-              <li><i class="fas fa-check text-accent mr-2"></i>Jonction Client Windows 11</li>
-            </ul>
-            <a href="docs/Fiche_E6_Windows.pdf" target="_blank" class="btn-outline w-full text-center block">Voir la
-              Fiche E6 (PDF)</a>
+
+            <div class="mb-5">
+              <h4 class="text-xs uppercase tracking-wider text-gray-500 mb-3 font-semibold">Réalisation technique</h4>
+              <ul class="space-y-2 text-sm text-gray-300">
+                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-0.5"></i><span>Création d'une GPO de déploiement logiciel (MSI) sur le contrôleur de domaine</span></li>
+                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-0.5"></i><span>Configuration de l'agent GLPI pour pointer vers le serveur d'inventaire</span></li>
+                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-0.5"></i><span>Validation du déploiement automatique sur les postes du domaine</span></li>
+                <li class="flex items-start gap-2"><i class="fas fa-check text-blue-400 mt-0.5"></i><span>Vérification de la remontée d'inventaire dans GLPI</span></li>
+              </ul>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-2 py-1 rounded bg-blue-500/10 text-blue-400 text-[10px] border border-blue-500/20">Windows Server</span>
+              <span class="px-2 py-1 rounded bg-purple-500/10 text-purple-400 text-[10px] border border-purple-500/20">GPO</span>
+              <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-400 text-[10px] border border-cyan-500/20">GLPI Agent</span>
+              <span class="px-2 py-1 rounded bg-green-500/10 text-green-400 text-[10px] border border-green-500/20">Active Directory</span>
+            </div>
+
+            <div class="space-y-2 border-t border-white/5 pt-4">
+              <p class="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-2">Documents E6</p>
+              <a href="E6/E6_WinAzizBenyamina.pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> Fiche E6 — Situation Windows (GPO / GLPI)
+              </a>
+              <a href="E6/Doc_GPO (1).pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-purple-400 hover:text-purple-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> Documentation d'installation — GPO Agent GLPI
+              </a>
+              <a href="E6/INVENTAIRE PLOT1.pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-cyan-400 hover:text-cyan-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> Inventaire du réseau (PLOT1)
+              </a>
+            </div>
           </div>
 
-          <div class="glass-card p-8 hover:border-accent/50 transition-colors" data-aos="fade-left">
+          <!-- RÉALISATION 2 : pfSense HA CARP + HAProxy -->
+          <div class="glass-card p-8 hover:border-accent/50 transition-colors relative overflow-hidden" data-aos="fade-left">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
             <div class="flex items-start justify-between mb-6">
-              <div class="bg-orange-500/20 p-3 rounded-lg text-orange-400"><i class="fas fa-shield-alt text-3xl"></i>
-              </div>
-              <span class="text-xs font-bold border border-orange-500/30 text-orange-400 px-2 py-1 rounded">Réalisation
-                2</span>
+              <div class="bg-orange-500/20 p-3 rounded-lg text-orange-400"><i class="fas fa-shield-alt text-3xl"></i></div>
+              <span class="text-xs font-bold border border-orange-500/30 text-orange-400 px-2 py-1 rounded">Réalisation 2</span>
             </div>
-            <h3 class="text-2xl font-bold mb-2">Sécurité pfSense</h3>
-            <p class="text-gray-400 text-sm mb-6">
-              Sécurisation du réseau local et gestion des flux entrants/sortants via un pare-feu dédié.
+            <h3 class="text-xl font-bold mb-1 text-white">Cluster Haute Disponibilité pfSense</h3>
+            <p class="text-xs text-orange-400 font-mono mb-4">CARP + HAProxy — Publication de services</p>
+            <p class="text-gray-400 text-sm mb-5">
+              L'infrastructure de la MFC reposait sur un pare-feu unique, constituant un SPOF (Single Point of Failure). Mise en œuvre d'une architecture en Haute Disponibilité (HA) de type actif/passif pour garantir la continuité des services.
             </p>
-            <ul class="space-y-2 text-sm text-gray-300 mb-6">
-              <li><i class="fas fa-check text-accent mr-2"></i>Segmentation Réseau</li>
-              <li><i class="fas fa-check text-accent mr-2"></i>Filtrage & NAT</li>
-              <li><i class="fas fa-check text-accent mr-2"></i>Règles ICMP & Web</li>
-            </ul>
-            <a href="docs/Fiche_E6_pfSense.pdf" target="_blank" class="btn-outline w-full text-center block">Voir la
-              Fiche E6 (PDF)</a>
+
+            <div class="mb-5">
+              <h4 class="text-xs uppercase tracking-wider text-gray-500 mb-3 font-semibold">Réalisation technique</h4>
+              <ul class="space-y-2 text-sm text-gray-300">
+                <li class="flex items-start gap-2"><i class="fas fa-check text-orange-400 mt-0.5"></i><span>Installation de deux instances pfSense sur Proxmox VE</span></li>
+                <li class="flex items-start gap-2"><i class="fas fa-check text-orange-400 mt-0.5"></i><span>Configuration du protocole CARP — IP Virtuelles (VIP) partagées : <code class="text-orange-300 bg-orange-500/10 px-1 rounded text-[11px]">10.113.1.5</code> et <code class="text-orange-300 bg-orange-500/10 px-1 rounded text-[11px]">192.168.32.1</code></span></li>
+                <li class="flex items-start gap-2"><i class="fas fa-check text-orange-400 mt-0.5"></i><span>Passerelle réseau résiliente (actif/passif)</span></li>
+                <li class="flex items-start gap-2"><i class="fas fa-check text-orange-400 mt-0.5"></i><span>Publication de services via HAProxy (reverse proxy)</span></li>
+              </ul>
+            </div>
+
+            <div class="mb-5">
+              <h4 class="text-xs uppercase tracking-wider text-gray-500 mb-3 font-semibold">Validation</h4>
+              <ul class="space-y-2 text-sm text-gray-300">
+                <li class="flex items-start gap-2"><i class="fas fa-vial text-yellow-400 mt-0.5"></i><span>Test de Failover : simulation de coupure brutale du nœud maître</span></li>
+                <li class="flex items-start gap-2"><i class="fas fa-vial text-yellow-400 mt-0.5"></i><span>Validation du basculement automatique vers le nœud esclave</span></li>
+                <li class="flex items-start gap-2"><i class="fas fa-vial text-yellow-400 mt-0.5"></i><span>Continuité des services Internet et GLPI vérifiée</span></li>
+              </ul>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-2 py-1 rounded bg-orange-500/10 text-orange-400 text-[10px] border border-orange-500/20">pfSense</span>
+              <span class="px-2 py-1 rounded bg-red-500/10 text-red-400 text-[10px] border border-red-500/20">CARP / HA</span>
+              <span class="px-2 py-1 rounded bg-yellow-500/10 text-yellow-400 text-[10px] border border-yellow-500/20">HAProxy</span>
+              <span class="px-2 py-1 rounded bg-teal-500/10 text-teal-400 text-[10px] border border-teal-500/20">Proxmox VE</span>
+            </div>
+
+            <div class="space-y-2 border-t border-white/5 pt-4">
+              <p class="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-2">Documents E6</p>
+              <a href="E6/E6_pfsense.pdf" target="_blank"
+                class="tp-doc-link flex items-center gap-2 text-xs text-orange-400 hover:text-orange-300 transition-colors">
+                <i class="fas fa-file-pdf"></i> Fiche E6 — Situation pfSense HA (CARP / HAProxy)
+              </a>
+              <p class="text-[10px] text-gray-500 italic mt-2"><i class="fas fa-clock mr-1"></i>Documentation d'installation à venir…</p>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
